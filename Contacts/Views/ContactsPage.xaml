@@ -3,20 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.ContactsPage"
              Title="Contacts">
-    <VerticalStackLayout Spacing="5">
-        <Label 
-            Text="Welcome to My Contacts Application"
-            TextColor="DarkBlue"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+    <ListView 
+            x:Name="listContacts"
+            BackgroundColor="Transparent"
+            SeparatorColor="Aqua"
+            RowHeight="60"
+            ItemSelected="ListContacts_ItemSelected"
+            ItemTapped="ListContacts_ItemTapped">
 
-        <Image
-            Source="contacts.png"
-            HeightRequest="185"
-            Aspect="AspectFit"/>
-
-        <Button x:Name="btnAddContact" Clicked="btnAddContact_Clicked"  Text="Add Contact"/>
-        <Button x:Name="btnEditContact" Clicked="btnEditContact_Clicked"  Text="Edit Contact"/>
-
-    </VerticalStackLayout>
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <TextCell 
+                    Text="{Binding FirstName}"
+                    Detail="{Binding PhoneNumber}"/>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
 </ContentPage>

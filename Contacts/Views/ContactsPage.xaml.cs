@@ -1,24 +1,30 @@
 namespace Contacts.Views;
 
+using Contacts.Models;
+
 public partial class ContactsPage : ContentPage
 {
 	public ContactsPage()
 	{
 		InitializeComponent();
+
+		List<Contact> contacts = ContactRepository.GetContacts();
+
+		listContacts.ItemsSource = contacts;
 	}
 
-    private void btnAddContact_Clicked(object sender, EventArgs e)
+    private async void ListContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(AddContactPage));
+		if (listContacts.SelectedItem != null)
+		{
+			await Shell
+				.Current
+				.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)listContacts.SelectedItem).ContactId}");
+		}
     }
 
-    private void btnEditContact_Clicked(object sender, EventArgs e)
+    private void ListContacts_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(EditContactPage));
-    }
-
-    private void btnCancel_Clicked(object sender, EventArgs e)
-    {
-
+		listContacts.SelectedItem = null;
     }
 }
