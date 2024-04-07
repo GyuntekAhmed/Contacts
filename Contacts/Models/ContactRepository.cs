@@ -23,5 +23,5 @@ public static class ContactRepository
     public static List<Contact> GetContacts() => contacts;
 
     public static Contact GetContactById(int id) =>
-        contacts.FirstOrDefault(c => c.ContactId == id);
+        contacts.First(c => c.ContactId == id);
 }

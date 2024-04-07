@@ -22,7 +22,7 @@ public partial class EditContactPage : ContentPage
 		set
 		{
 			contact = ContactRepository.GetContactById(int.Parse(value));
-			labelName.Text = $"{contact.FirstName} \n {contact.LastName} \n {contact.PhoneNumber} \n {contact.Email} \n";
+			labelName.Text = $"{contact.FirstName}\n{contact.LastName}\n{contact.PhoneNumber}\n{contact.Email}\n";
 		}
 	}
 }
