@@ -3,12 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.EditContactPage"
              Title="Edit Contact">
-    <VerticalStackLayout>
-        <Label
-            x:Name="labelName"
-            Padding="10"/>
-        
+
+    <VerticalStackLayout Spacing="10" Margin="10, 10, 10, 0">
+
+        <Frame Padding="10, 2, 10, 2">
+            
+            <HorizontalStackLayout>
+                <Label Text="FirstName" VerticalOptions="Center" WidthRequest="80"/>
+                <Entry x:Name="entryFirstName" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+            
+        </Frame>
+
+        <Frame>
+            <HorizontalStackLayout>
+                <Label Text="LastName" VerticalOptions="Center" WidthRequest="70"/>
+                <Entry x:Name="entryLastName" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame>
+            <HorizontalStackLayout>
+                <Label Text="Email" VerticalOptions="Center" WidthRequest="50"/>
+                <Entry x:Name="entryEmail" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame>
+            <HorizontalStackLayout>
+                <Label Text="PhoneNumber" VerticalOptions="Center" WidthRequest="100"/>
+                <Entry x:Name="entryPhoneNumber" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Button x:Name="btnUpdate" Text="Update" Clicked="btnUpdate_Clicked"/>
         <Button x:Name="btnCancel" Text="Canlcel" Clicked="BtnCancel_Clicked"/>
-        
+
     </VerticalStackLayout>
 </ContentPage>

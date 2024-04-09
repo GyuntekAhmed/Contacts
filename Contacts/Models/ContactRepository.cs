@@ -22,6 +22,40 @@ public static class ContactRepository
 
     public static List<Contact> GetContacts() => contacts;
 
-    public static Contact GetContactById(int id) =>
-        contacts.First(c => c.ContactId == id);
+    public static Contact? GetContactById(int id)
+    {
+        var currentContact = contacts.FirstOrDefault(c => c.ContactId == id);
+
+        if (currentContact != null)
+        {
+            return new Contact
+            {
+                ContactId = currentContact.ContactId,
+                FirstName = currentContact.FirstName,
+                LastName = currentContact.LastName,
+                PhoneNumber = currentContact.PhoneNumber,
+                Email = currentContact.Email,
+            };
+        }
+
+        return null;
+    }
+
+    public static void UpdateContact(int contactId, Contact contact)
+    {
+        if (contactId != contact.ContactId)
+        {
+            return;
+        }
+
+        var contactToUpdate = contacts.FirstOrDefault(c => c.ContactId == contactId);
+
+        if (contactToUpdate != null)
+        {
+            contactToUpdate.FirstName = contact.FirstName;
+            contactToUpdate.LastName = contact.LastName;
+            contactToUpdate.Email = contact.Email;
+            contactToUpdate.PhoneNumber = contact.PhoneNumber;
+        }
+    }
 }
