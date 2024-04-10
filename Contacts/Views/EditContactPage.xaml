@@ -1,43 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:controls="clr-namespace:Contacts.Views.Controls"
              x:Class="Contacts.Views.EditContactPage"
              Title="Edit Contact">
 
-    <VerticalStackLayout Spacing="10" Margin="10, 10, 10, 0">
-
-        <Frame Padding="10, 2, 10, 2">
-            
-            <HorizontalStackLayout>
-                <Label Text="FirstName" VerticalOptions="Center" WidthRequest="80"/>
-                <Entry x:Name="entryFirstName" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-            
-        </Frame>
-
-        <Frame>
-            <HorizontalStackLayout>
-                <Label Text="LastName" VerticalOptions="Center" WidthRequest="70"/>
-                <Entry x:Name="entryLastName" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </Frame>
-
-        <Frame>
-            <HorizontalStackLayout>
-                <Label Text="Email" VerticalOptions="Center" WidthRequest="50"/>
-                <Entry x:Name="entryEmail" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </Frame>
-
-        <Frame>
-            <HorizontalStackLayout>
-                <Label Text="PhoneNumber" VerticalOptions="Center" WidthRequest="100"/>
-                <Entry x:Name="entryPhoneNumber" VerticalOptions="Center"/>
-            </HorizontalStackLayout>
-        </Frame>
-
-        <Button x:Name="btnUpdate" Text="Update" Clicked="btnUpdate_Clicked"/>
-        <Button x:Name="btnCancel" Text="Canlcel" Clicked="BtnCancel_Clicked"/>
-
-    </VerticalStackLayout>
+    <controls:ContactControl x:Name="contactCtrl"
+                             OnSave="btnUpdate_Clicked"
+                             OnCancel="BtnCancel_Clicked"
+                             OnError="contactCtrl_OnError"/>
 </ContentPage>

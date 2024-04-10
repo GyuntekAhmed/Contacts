@@ -21,25 +21,30 @@ public partial class EditContactPage : ContentPage
 	{
 		set
 		{
-			contact = ContactRepository.GetContactById(int.Parse(value));
+            contact = ContactRepository.GetContactById(int.Parse(value));
 			if (contact != null)
 			{
-                entryFirstName.Text = contact.FirstName;
-                entryLastName.Text = contact.LastName;
-                entryEmail.Text = contact.Email;
-                entryPhoneNumber.Text = contact.PhoneNumber;
+                contactCtrl.FirstName = contact.FirstName;
+                contactCtrl.LastName = contact.LastName!;
+                contactCtrl.Email = contact.Email;
+                contactCtrl.PhoneNumber = contact.PhoneNumber;
             }
 		}
 	}
 
     private void btnUpdate_Clicked(object sender, EventArgs e)
     {
-		contact.FirstName = entryFirstName.Text;
-		contact.LastName = entryLastName.Text;
-		contact.Email = entryEmail.Text;
-		contact.PhoneNumber = entryPhoneNumber.Text;
+        contact.FirstName = contactCtrl.FirstName;
+        contact.LastName = contactCtrl.LastName;
+        contact.Email = contactCtrl.Email;
+        contact.PhoneNumber = contactCtrl.PhoneNumber;
 
-		ContactRepository.UpdateContact(contact.ContactId, contact);
+        ContactRepository.UpdateContact(contact.ContactId, contact);
         Shell.Current.GoToAsync("..");
+    }
+
+    private void contactCtrl_OnError(object sender, string e)
+    {
+        DisplayAlert("Error", e, "OK");
     }
 }
