@@ -1,5 +1,8 @@
 ﻿namespace Contacts.Models;
 
+using System;
+using System.Collections.Generic;
+
 public static class ContactRepository
 {
     public static List<Contact> contacts = new List<Contact>()
@@ -74,5 +77,55 @@ public static class ContactRepository
         {
             contacts.Remove(contact);
         }
+    }
+
+    public static List<Contact> SearchContacts(string filterText)
+    {
+        var contactsList = contacts
+            .Where(c => !string.IsNullOrWhiteSpace(c.FirstName) &&
+            c.FirstName.StartsWith
+            (filterText, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        if (contactsList == null || contactsList.Count <= 0)
+        {
+            contactsList = contacts
+            .Where(c => !string.IsNullOrWhiteSpace(c.PhoneNumber) &&
+            c.PhoneNumber.StartsWith
+            (filterText, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        }
+        else
+        {
+            return contactsList;
+        }
+
+        if (contactsList == null || contactsList.Count <= 0)
+        {
+            contactsList = contacts
+            .Where(c => !string.IsNullOrWhiteSpace(c.LastName) &&
+            c.LastName!.StartsWith
+            (filterText, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        }
+        else
+        {
+            return contactsList;
+        }
+
+        if (contactsList == null || contactsList.Count <= 0)
+        {
+            contactsList = contacts
+            .Where(c => !string.IsNullOrWhiteSpace(c.Email) &&
+            c.Email.StartsWith
+            (filterText, StringComparison.OrdinalIgnoreCase))
+            .ToList();
+        }
+        else
+        {
+            return contactsList;
+        }
+
+        return contactsList;
     }
 }
