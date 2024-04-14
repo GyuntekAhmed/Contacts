@@ -3,7 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Contacts.Views.ContactsPage"
              Title="Contacts">
-    <ListView 
+
+    <Grid 
+        Padding="5"
+        RowDefinitions="*, 50"
+        ColumnDefinitions="*">
+
+        <ListView
+            Grid.Row="0"
+            Grid.Column="0"
             x:Name="listContacts"
             BackgroundColor="Transparent"
             SeparatorColor="Aqua"
@@ -11,12 +19,30 @@
             ItemSelected="ListContacts_ItemSelected"
             ItemTapped="ListContacts_ItemTapped">
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <TextCell 
-                    Text="{Binding FirstName}"
-                    Detail="{Binding PhoneNumber}"/>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell 
+                        Text="{Binding FirstName}"
+                        Detail="{Binding PhoneNumber}">
+
+                        <TextCell.ContextActions>
+                            <MenuItem
+                                Text="Delete"
+                                IsDestructive="True"
+                                Clicked="Delete_Clicked"
+                                CommandParameter="{Binding .}"/>
+                        </TextCell.ContextActions>
+
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button
+            Grid.Row="1"
+            Grid.Column="0"
+            x:Name="btnAdd"
+            Text="Add Contact"
+            Clicked="BtnAdd_Clicked"/>
+    </Grid>
 </ContentPage>

@@ -58,4 +58,21 @@ public static class ContactRepository
             contactToUpdate.PhoneNumber = contact.PhoneNumber;
         }
     }
+
+    public static void AddContact(Contact contact)
+    {
+        var maxId = contacts.Max(c => c.ContactId);
+        contact.ContactId = maxId + 1;
+        contacts.Add(contact);
+    }
+
+    public static void DeleteContact(int contactId)
+    {
+        var contact = contacts.FirstOrDefault(c => c.ContactId == contactId);
+
+        if (contact != null)
+        {
+            contacts.Remove(contact);
+        }
+    }
 }
